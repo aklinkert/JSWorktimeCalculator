@@ -2,78 +2,77 @@
 </head>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
 	<script type="text/javascript">
-		function doCalculate (e)
-		{
-			var zeit_start_m = $("#zeit_start_m").val();
-			var zeit_start = (( parseInt($("#zeit_start_h").val(),10) * 60) + (parseInt($("#zeit_start_m").val(),10)));
-			var zeit_dauer = (( parseInt($("#zeit_dauer_h").val(),10) * 60) + (parseInt($("#zeit_dauer_m").val(),10)));
-			var zeit_pause = (( parseInt($("#zeit_pause_h").val(),10) * 60) + (parseInt($("#zeit_pause_m").val(),10)));
-			var zeit_ende = 0;
-			
-			zeit_ende = zeit_start + zeit_dauer + zeit_pause;
-			
-			$("#zeit_ende_m").val(zeit_ende % 60);
-			$("#zeit_ende_h").val((zeit_ende - (zeit_ende % 60)) / 60);
-			
-		}
 		
-		
+		$(document).ready(function (){
+			$(".calconchange").on("change", function (e) {
+				var time_start_m = $("#time_start_m").val();
+				var time_start = (( parseInt($("#time_start_h").val(),10) * 60) + (parseInt($("#time_start_m").val(),10)));
+				var time_duration = (( parseInt($("#time_duration_h").val(),10) * 60) + (parseInt($("#time_duration_m").val(),10)));
+				var time_pause = (( parseInt($("#time_pause_h").val(),10) * 60) + (parseInt($("#time_pause_m").val(),10)));
+				var time_closing = 0;
+				
+				time_closing = time_start + time_duration + time_pause;
+				
+				$("#time_closing_m").val(time_closing % 60);
+				$("#time_closing_h").val((time_closing - (time_closing % 60)) / 60);
+			}).trigger("change");
+		});
 	</script>
-	<title>ArbeitszeitenRechner</title>
+	<title>JSWorktimeCalculator</title>
 	<style type="text/css">
 	td {
 		text-align: center;
 	}
 	</style>
 </head>
-<body onLoad="doCalculate();">
+<body>
 
 <center>
 <div style="border: 1px solid #000000;" id="all">
 	<table border="1" cellpadding="0" cellspacing="0" width="350px">
 		<tr>
 			<td colspan="2">
-				<h1>ArbeitszeitenRechner</h1>
+				<h1>JSWorktimeCalculator</h1>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				Arbeitsstart:
+				begin:
 			</td>
 			<td>
-				<input type="text" name="zeit_start_h" id="zeit_start_h" value="8"  size="10" maxlength="2" onchange="doCalculate();" />
+				<input type="text" name="time_start_h" id="time_start_h" value="8"  size="10" maxlength="2" class="calconchange" />
 				&nbsp;
-				<input type="text" name="zeit_start_m" id="zeit_start_m" value="00" size="10" maxlength="2" onchange="doCalculate();" />
+				<input type="text" name="time_start_m" id="time_start_m" value="00" size="10" maxlength="2" class="calconchange" />
 			</td>
 		</tr>
 		<tr>
 			<td>
-				Arbeitsdauer:
+				duration:
 			</td>
 			<td>
-				<input type="text" name="zeit_dauer_h" id="zeit_dauer_h" value="7" size="10" maxlength="2" onchange="doCalculate();" />
+				<input type="text" name="time_duration_h" id="time_duration_h" value="7" size="10" maxlength="2" class="calconchange" />
 				&nbsp;
-				<input type="text" name="zeit_dauer_m" id="zeit_dauer_m" value="42" size="10" maxlength="2" onchange="doCalculate();" />
+				<input type="text" name="time_duration_m" id="time_duration_m" value="42" size="10" maxlength="2" class="calconchange" />
 			</td>
 		</tr>
 		<tr>
 			<td>
-				Pause:
+				pause:
 			</td>
 			<td>
-				<input type="text" name="zeit_dauer_h" id="zeit_pause_h" value="0" size="10" maxlength="2" onchange="doCalculate();" />
+				<input type="text" name="time_duration_h" id="time_pause_h" value="0" size="10" maxlength="2" class="calconchange" />
 				&nbsp;
-				<input type="text" name="zeit_dauer_m" id="zeit_pause_m" value="30" size="10" maxlength="2" onchange="doCalculate();" />
+				<input type="text" name="time_duration_m" id="time_pause_m" value="30" size="10" maxlength="2" class="calconchange" />
 			</td>
 		</tr>
 		<tr>
 			<td>
-				Arbeitsende:
+				closing time:
 			</td>
 			<td>
-				<input type="text" name="zeit_ende_h" id="zeit_ende_h" value="" size="10" />
+				<input type="text" name="time_closing_h" id="time_closing_h" value="" size="10" />
 				&nbsp;
-				<input type="text" name="zeit_ende_m" id="zeit_ende_m" value="" size="10" />
+				<input type="text" name="time_closing_m" id="time_closing_m" value="" size="10" />
 			</td>
 		</tr>
 		<tr height="20px">
