@@ -1,0 +1,87 @@
+<html>
+</head>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+	<script type="text/javascript">
+		function doCalculate (e)
+		{
+			var zeit_start_m = $("#zeit_start_m").val();
+			var zeit_start = (( parseInt($("#zeit_start_h").val(),10) * 60) + (parseInt($("#zeit_start_m").val(),10)));
+			var zeit_dauer = (( parseInt($("#zeit_dauer_h").val(),10) * 60) + (parseInt($("#zeit_dauer_m").val(),10)));
+			var zeit_pause = (( parseInt($("#zeit_pause_h").val(),10) * 60) + (parseInt($("#zeit_pause_m").val(),10)));
+			var zeit_ende = 0;
+			
+			zeit_ende = zeit_start + zeit_dauer + zeit_pause;
+			
+			$("#zeit_ende_m").val(zeit_ende % 60);
+			$("#zeit_ende_h").val((zeit_ende - (zeit_ende % 60)) / 60);
+			
+		}
+		
+		
+	</script>
+	<title>ArbeitszeitenRechner</title>
+	<style type="text/css">
+	td {
+		text-align: center;
+	}
+	</style>
+</head>
+<body onLoad="doCalculate();">
+
+<center>
+<div style="border: 1px solid #000000;" id="all">
+	<table border="1" cellpadding="0" cellspacing="0" width="350px">
+		<tr>
+			<td colspan="2">
+				<h1>ArbeitszeitenRechner</h1>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Arbeitsstart:
+			</td>
+			<td>
+				<input type="text" name="zeit_start_h" id="zeit_start_h" value="8"  size="10" maxlength="2" onchange="doCalculate();" />
+				&nbsp;
+				<input type="text" name="zeit_start_m" id="zeit_start_m" value="00" size="10" maxlength="2" onchange="doCalculate();" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Arbeitsdauer:
+			</td>
+			<td>
+				<input type="text" name="zeit_dauer_h" id="zeit_dauer_h" value="7" size="10" maxlength="2" onchange="doCalculate();" />
+				&nbsp;
+				<input type="text" name="zeit_dauer_m" id="zeit_dauer_m" value="42" size="10" maxlength="2" onchange="doCalculate();" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Pause:
+			</td>
+			<td>
+				<input type="text" name="zeit_dauer_h" id="zeit_pause_h" value="0" size="10" maxlength="2" onchange="doCalculate();" />
+				&nbsp;
+				<input type="text" name="zeit_dauer_m" id="zeit_pause_m" value="30" size="10" maxlength="2" onchange="doCalculate();" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Arbeitsende:
+			</td>
+			<td>
+				<input type="text" name="zeit_ende_h" id="zeit_ende_h" value="" size="10" />
+				&nbsp;
+				<input type="text" name="zeit_ende_m" id="zeit_ende_m" value="" size="10" />
+			</td>
+		</tr>
+		<tr height="20px">
+			<td colspan="2"></td>
+		</tr>
+	</table>
+</div>
+</center>
+
+</body>
+</html>
